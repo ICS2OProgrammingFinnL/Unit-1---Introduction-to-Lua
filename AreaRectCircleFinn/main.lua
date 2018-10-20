@@ -59,16 +59,30 @@ myCircle:setStrokeColor(255, 0, 0)
 --calculate the area
 areaOfRectangle = widthOfRectangle * heightOfRectangle
 
+--calculate the area of the circle
+areaOfCircle = PI * radiusOfCircle * radiusOfCircle
+
 -- write the area on screen.
 areaText = display.newText("The area of this rectangle with width of \n" ..
-   widthOfRectangle .. " and a height of " .. heightOfRectangle ..  " is " .. 
-   areaOfRectangle .. " pixels².", 0,0, Arial, textSize)
+	widthOfRectangle .. " and a height of " .. heightOfRectangle ..  " is " .. 
+	areaOfRectangle .. " pixels².", 0,0, Arial, textSize)
+areaTextCircle = display.newText("The area of this circle with radius of \n" ..
+	radiusOfCircle ..  " is " .. areaOfCircle .. " pixels².", 0,0, Arial, textSize)
 
---anchor the text and set its x,y position
+--anchor the text of rectangle and set its x,y position
 areaText.anchorY = 0
 areaText.anchorX = 0 
 areaText.x = 20
 areaText.y = display.contentHeight/2
+
+-- set the colour of the newtext
+areaText:setTextColor(1, 1, 1)
+
+--anchor the text of circle and set its x,y position
+areaTextCircle.anchorY = 0
+areaTextCircle.anchorX = 0 
+areaTextCircle.x = 20
+areaTextCircle.y = display.contentHeight *3/4
 
 -- set the colour of the newtext
 areaText:setTextColor(1, 1, 1)
