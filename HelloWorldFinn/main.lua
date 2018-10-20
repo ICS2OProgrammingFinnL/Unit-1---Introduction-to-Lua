@@ -7,6 +7,12 @@
 -- print "Hello, World" yo the command terminal
 print ("***Hellooooooo!")
 
+--play the background music
+local Music = audio.loadSound("Sounds/Music.mp3")
+local MusicChannel
+
+MusicChannel = audio.play(Music)
+
 -- hide the status bar
 display.setDefault("background", 240/255,0/255, 100/255)
 
@@ -22,3 +28,5 @@ textObject:setTextColor(250/255, 250/255, 250/255)
 
 --displays my name
 signature = display.newText( "From: Finn" , 650, 600, nil, 50 )
+
+
