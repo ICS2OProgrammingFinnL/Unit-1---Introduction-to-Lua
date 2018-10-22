@@ -106,14 +106,14 @@ local function NumericFieldListener(event)
 			if (userAnswer == correctAnswer) then 
 				correctObject.isVisible = true
 				startingPoints = startingPoints + 1
-				timer.performWithDelay(2000, HideCorrect)
+				timer.performWithDelay(1000, HideCorrect)
 
 				--display the points going up
 				points.text = " Points = " .. startingPoints
 			else
 				--if they aren't the same
 				incorrectObject.isVisible = true
-				timer.performWithDelay(2000, HideIncorrect)
+				timer.performWithDelay(1000, HideIncorrect)
 			end
 
 			event.target.text = ""
