@@ -36,11 +36,56 @@ local points
 --variables for the  timer
 local totalSeconds = 5
 local secondsLeft
+local clockText
+local countdiwnTimer
 
---variables for the
---------------------------------------------------------------------------------------------
+--variables for the lives
+local lives = 3
+local heart1
+local heart2
+
+----------------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
+
+
+local function UpdateTime() 
+
+	-- decrement the number of seconds
+	secondsLeft = secondsLeft - 1
+
+	--display the number of seconds left in the clock object
+	clockText.text = secondsLeft .. ""
+
+		if (secondsLeft == 0 ) then
+			-- reset the number of seconds left
+			secondsLeft = totalSeconds
+			lives = lives - 1
+
+			-- *** IF THERE ARE NO LIVES LEFT, PLAY A LOSE SOUND, SHOW A YOU LOSE IMAGE
+			-- AND CANCEL THE TIMER REMOVE THE THRID HEART BY MAKING IT VISIBLE
+			if (lives == 2) then 
+				heart2.isVisible = false
+			elseif ( lives == 1) then 
+				heart1.isVisible = false
+			end
+			
+
+			-- Call the askquestion function	
+			AskQuestion()
+	end
+end			
+
+
+--functions that calls the timer
+local function StartTimer()
+	-- Create a countdown timer that loops infinitely
+	countdownTimer = timer.performWithDelay( 1000, UpdateTime, 0)
+end
+
+
+
+
 
 local function AskQuestion() 
 	-- generate 2 random numbers between a max. and a min. number
@@ -146,8 +191,9 @@ incorrectObject.isVisible = false
 numericField = native .newTextField( display.contentWidth/2, display.contentHeight/2, 150, 80)
 numericField.inputType = "number"
 
---add thier event listener for the numeric field
 numericField:addEventListener( "userInput", NumericFieldListener )
+--add thier event listener for the numeric field
+heart1 = display.newImageRect
 
 ----------------------------------------------------------------------------------------------
 --FUNCTION CALLS
