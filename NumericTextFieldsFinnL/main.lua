@@ -28,26 +28,40 @@ local incorrectAnswer
 local randomOperator
 local startingPoints = 0
 local points
-
+local GameOverImage
 
 
 
 
 --variables for the  timer
-local totalSeconds = 5
-local secondsLeft
+local totalSeconds = 10
+local secondsLeft = 10
 local clockText
-local countdiwnTimer
+local countdownTimer
 
 --variables for the lives
-local lives = 3
+local lives = 4
 local heart1
 local heart2
-
+local heart3
+local heart4
 ----------------------------------------------------------------------------------------------
 --LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
+local function UpdateLives()
 
+
+	if (lives == 3 ) then
+		heart1.isVisible = false
+	elseif ( lives == 2) then
+		heart2.isVisible = false
+	elseif ( lives == 1) then 
+		heart3.isVisible = false
+	elseif ( lives == 0) then
+		heart4.isVisible = false
+		GameOverImage.isVisible = true
+	end
+end		
 
 local function UpdateTime() 
 
@@ -61,14 +75,6 @@ local function UpdateTime()
 			-- reset the number of seconds left
 			secondsLeft = totalSeconds
 			lives = lives - 1
-
-			-- *** IF THERE ARE NO LIVES LEFT, PLAY A LOSE SOUND, SHOW A YOU LOSE IMAGE
-			-- AND CANCEL THE TIMER REMOVE THE THRID HEART BY MAKING IT VISIBLE
-			if (lives == 2) then 
-				heart2.isVisible = false
-			elseif ( lives == 1) then 
-				heart1.isVisible = false
-			end
 			
 
 			-- Call the askquestion function	
@@ -159,6 +165,8 @@ local function NumericFieldListener(event)
 				--if they aren't the same
 				incorrectObject.isVisible = true
 				timer.performWithDelay(1000, HideIncorrect)
+				lives = lives - 1
+				UpdateLives()
 			end
 
 			event.target.text = ""
@@ -193,8 +201,32 @@ numericField.inputType = "number"
 
 numericField:addEventListener( "userInput", NumericFieldListener )
 --add thier event listener for the numeric field
-heart1 = display.newImageRect
 
+--dislay heart shapes
+heart1 = display.newImageRect("Images/heart.png" , 100,100)
+heart2 = display.newImageRect("Images/heart.png" , 100,100)
+heart3 = display.newImageRect("Images/heart.png" ,  100,100)
+heart4 = display.newImageRect("Images/heart.png" ,  100,100)
+
+
+-- game over image with width and height 
+GameOverImage = display.newImageRect("Images/gameOver.png" , 2048, 1536)
+GameOverImage.isVisible = false
+
+
+
+-- set the initial x and y position of the hearts
+heart1.x = display.contentWidth * 7 / 8
+heart1.y = display.contentHeight * 3.5/4
+
+heart2.x = display.contentWidth * 6 / 8
+heart2.y = display.contentHeight * 3.5/4
+
+heart3.x = display.contentWidth * 5 / 8
+heart3.y = display.contentHeight * 3.5/4
+
+heart4.x = display.contentWidth * 4 / 8
+heart4.y = display.contentHeight * 3.5/4
 ----------------------------------------------------------------------------------------------
 --FUNCTION CALLS
 ---------------------------------------------------------------------------------------------
