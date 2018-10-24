@@ -69,7 +69,7 @@ local function UpdateTime()
 	secondsLeft = secondsLeft - 1
 
 	--display the number of seconds left in the clock object
-	clockText.text = secondsLeft .. ""
+	clockText.text = secondsLeft .. " Seconds Left!"
 
 		if (secondsLeft == 0 ) then
 			-- reset the number of seconds left
@@ -227,9 +227,13 @@ heart3.y = display.contentHeight * 3.5/4
 
 heart4.x = display.contentWidth * 4 / 8
 heart4.y = display.contentHeight * 3.5/4
+
+clockText = display.newText (secondsLeft .. " Seconds left!" , 150,100, nil, 35)
 ----------------------------------------------------------------------------------------------
 --FUNCTION CALLS
 ---------------------------------------------------------------------------------------------
 
 -- call the function to ask the question
 AskQuestion()
+
+StartTimer()
