@@ -60,6 +60,7 @@ local function UpdateLives()
 	elseif ( lives == 0) then
 		heart4.isVisible = false
 		GameOverImage.isVisible = true
+		numericField = false
 	end
 end		
 
@@ -75,7 +76,8 @@ local function UpdateTime()
 			-- reset the number of seconds left
 			secondsLeft = totalSeconds
 			lives = lives - 1
-			
+			UpdateLives()
+			StartTimer()
 
 			-- Call the askquestion function	
 			AskQuestion()
@@ -94,25 +96,26 @@ end
 
 
 local function AskQuestion() 
-	-- generate 2 random numbers between a max. and a min. number
+	-- generate 3 random numbers between a max. and a min. number
 	randomNumber1 = math.random(0, 10)
 	randomNumber2 = math.random(0, 10)
 	randomOperator = math.random(1,3)
 
+	--addition
 	if (randomOperator == 1) then
 	
 		correctAnswer = randomNumber1 + randomNumber2
 
 		-- create question in text object
 		questionObject.text = randomNumber1 .. " + " .. randomNumber2 .. " = "
-
+		--subtraction
 	elseif (randomOperator == 2) then
 
 		correctAnswer = randomNumber1 - randomNumber2
 
 		--create question in text object
 		questionObject.text = randomNumber1 .. " - " .. randomNumber2 .. " = "
-
+	--multiplacation
 	elseif (randomOperator == 3) then
 
 		correctAnswer = randomNumber1 * randomNumber2
@@ -176,7 +179,11 @@ local function NumericFieldListener(event)
 ---------------------------------------------------------------------------------------------
 --OBJECT CREATION
 --------------------------------------------------------------------------------------------
-
+-- game over image with width and height 
+GameOverImage = display.newImageRect("Images/gameOver.png" , 1350, 900)
+GameOverImage.isVisible = false
+GameOverImage.x = 515
+GameOverImage.y = 400
 --displays a  question and sets the colour
 questionObject = display.newText("", display.contentWidth/3, display.contentHeight/2, nil, 50 )
 questionObject:setTextColor(155/255, 100/255, 100/255)
@@ -207,11 +214,6 @@ heart1 = display.newImageRect("Images/heart.png" , 100,100)
 heart2 = display.newImageRect("Images/heart.png" , 100,100)
 heart3 = display.newImageRect("Images/heart.png" ,  100,100)
 heart4 = display.newImageRect("Images/heart.png" ,  100,100)
-
-
--- game over image with width and height 
-GameOverImage = display.newImageRect("Images/gameOver.png" , 2048, 1536)
-GameOverImage.isVisible = false
 
 
 
