@@ -60,7 +60,11 @@ local function UpdateLives()
 	elseif ( lives == 0) then
 		heart4.isVisible = false
 		GameOverImage.isVisible = true
-		numericField = false
+		numericField.isVisible = false
+		questionObject.isVisible = false
+		clockText.isVisible = false
+		points.isVisible = false
+
 	end
 end		
 
@@ -76,11 +80,12 @@ local function UpdateTime()
 			-- reset the number of seconds left
 			secondsLeft = totalSeconds
 			lives = lives - 1
+			--call the function to makea life go away
 			UpdateLives()
-			StartTimer()
+			-- call the function to reset timer
+			UpdateTime()
 
-			-- Call the askquestion function	
-			AskQuestion()
+			-- Call the askquestion function
 	end
 end			
 
@@ -121,7 +126,7 @@ local function AskQuestion()
 		correctAnswer = randomNumber1 * randomNumber2
 
 		--create question in text object
-		questionObject.text = randomNumber1 .. " * " .. randomNumber2 .. " = "
+		questionObject.text = randomNumber1 .. " x " .. randomNumber2 .. " = "
 	end
 end
 
@@ -170,6 +175,7 @@ local function NumericFieldListener(event)
 				timer.performWithDelay(1000, HideIncorrect)
 				lives = lives - 1
 				UpdateLives()
+				StartTimer()
 			end
 
 			event.target.text = ""
