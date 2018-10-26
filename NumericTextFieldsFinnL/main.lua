@@ -84,8 +84,6 @@ local function UpdateTime()
 			UpdateLives()
 			-- call the function to reset timer
 			UpdateTime()
-
-			-- Call the askquestion function
 	end
 end			
 
@@ -210,7 +208,7 @@ incorrectObject.isVisible = false
 
 --create numeric field 
 numericField = native .newTextField( display.contentWidth/2, display.contentHeight/2, 150, 80)
-numericField.inputType = "number"
+numericField.inputType = "display"
 
 numericField:addEventListener( "userInput", NumericFieldListener )
 --add thier event listener for the numeric field
