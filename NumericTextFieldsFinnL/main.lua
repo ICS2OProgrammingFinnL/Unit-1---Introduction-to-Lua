@@ -178,15 +178,12 @@ local function NumericFieldListener(event)
 			else
 				--if they aren't the same
 				incorrectObject.isVisible = true
-<<<<<<< HEAD
 				WrongChannel = audio.play(WrongSound)
 				timer.performWithDelay(2000, HideIncorrect)
-=======
 				timer.performWithDelay(1000, HideIncorrect)
 				lives = lives - 1
 				UpdateLives()
 				StartTimer()
->>>>>>> 2e1ea153111ea85b29bb923cc52339f6b548551a
 			end
 
 			event.target.text = ""
