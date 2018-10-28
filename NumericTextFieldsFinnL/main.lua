@@ -16,6 +16,13 @@ display.setDefault("background" , 200/255, 50/255, 100/255)
 -- LOCAL VARIABLES
 --------------------------------------------------------------------------------------------
 
+--load and play the music
+local CorrectSound = audio.loadSound("Sounds/correctSound.mp3")
+local CorrectChannel
+--load and play the music
+local WrongSound = audio.loadSound("Sounds/wrongSound.mp3")
+local WrongChannel
+
 -- create my local variables
 local questionObject
 local correctObject
@@ -105,6 +112,7 @@ local function NumericFieldListener(event)
 			-- if the users answer and the correct answer are the same:
 			if (userAnswer == correctAnswer) then 
 				correctObject.isVisible = true
+				CorrectChannel = audio.play(CorrectSound)
 				startingPoints = startingPoints + 1
 				timer.performWithDelay(2000, HideCorrect)
 
@@ -113,6 +121,7 @@ local function NumericFieldListener(event)
 			else
 				--if they aren't the same
 				incorrectObject.isVisible = true
+				WrongChannel = audio.play(WrongSound)
 				timer.performWithDelay(2000, HideIncorrect)
 			end
 
