@@ -182,6 +182,7 @@ local function NumericFieldListener(event)
 				timer.performWithDelay(2000, HideIncorrect)
 				timer.performWithDelay(1000, HideIncorrect)
 				lives = lives - 1
+				secondsLeft = totalSeconds
 				UpdateLives()
 				StartTimer()
 			end
