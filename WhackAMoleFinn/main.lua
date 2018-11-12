@@ -99,3 +99,4 @@ GameStart()
 pointsText = display.newText("Points = " .. startingPoints , display.contentWidth/1.4, display.contentHeight/2, nil, 50 )
 pointsText:setTextColor(155/255, 0/255, 100/255)
 
+h
